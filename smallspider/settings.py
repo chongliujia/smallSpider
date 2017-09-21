@@ -8,6 +8,8 @@
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
+import os
+
 
 BOT_NAME = 'smallspider'
 
@@ -27,13 +29,13 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 20
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -66,8 +68,21 @@ ROBOTSTXT_OBEY = True
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
 #    'smallspider.pipelines.SmallspiderPipeline': 300,
+#    'scrapy.pipelines.images.ImagesPipeline': 200
 #}
 
+
+
+IMAGES_URLS_FIELD = "font_image_url"
+
+project_path = os.path.abspath(os.path.dirname(__file__))
+IMAGES_STORE = os.path.join(project_path, "images")
+
+MYSQL_HOST     = '127.0.0.1'
+MYSQL_DBNAME   = 'article_spider'
+MYSQL_USER     = 'root'
+MYSQL_PASSWORD = '123456'
+MYSQL_PORT     = 3306
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import re
+from scrapy.http import Request
 
 class JobboleSpider(scrapy.Spider):
     name = 'jobbole'
@@ -8,7 +9,22 @@ class JobboleSpider(scrapy.Spider):
     start_urls = ['http://blog.jobbole.com/']
 
     def parse(self, response):
-        pass
+        article_nodes = response.css('div#archive .floated-thumb .post-thumb a')
+        for article_node in article_nodes:
+            font_image_url = article_node.css('img::attr(src)').extract_first("")
+            article_url = article_node.css('::attr(href)').extract_first("")
+
+            yield Request(url=parse.urljoin(response.url, article_url), meta={
+                'font_image_url':parse.urljoin(response.url, font_image_url)
+            }, callback=self.parse_detail)
+
+            next_url = response.css('a.next.page-numbers::attr(href)').extract_first("")
+            if next_url:
+                yield Request(url=parse.urljoin(response.url, next_url),callback=self.parse)
+
+
+
+
 
     def parse_detail(self, response):
         title = response.xpath('//div[@class=entry-header"]/h1/text()').extract_first()
