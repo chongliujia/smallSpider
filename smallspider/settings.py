@@ -29,7 +29,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 20
+DOWNLOAD_DELAY = 5
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -56,6 +56,7 @@ COOKIES_ENABLED = False
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
 #    'smallspider.middlewares.MyCustomDownloaderMiddleware': 543,
+#    'smallspider.middlewares.JSPageMiddleware': 544,
 #}
 
 # Enable or disable extensions
@@ -67,8 +68,9 @@ COOKIES_ENABLED = False
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'smallspider.pipelines.SmallspiderPipeline': 300,
-#    'scrapy.pipelines.images.ImagesPipeline': 200
+#    'scrapy.pipelines.images.ImagesPipeline': 2,
+#    'smallspider.pipelines.AricleImagePipeline': 3,
+#    'smallspider.pipelines.MysqlTwistedPipline': 4,
 #}
 
 
@@ -79,7 +81,7 @@ project_path = os.path.abspath(os.path.dirname(__file__))
 IMAGES_STORE = os.path.join(project_path, "images")
 
 MYSQL_HOST     = '127.0.0.1'
-MYSQL_DBNAME   = 'jobbloe_spider'
+MYSQL_DBNAME   = 'jobbole_spider'
 MYSQL_USER     = 'root'
 MYSQL_PASSWORD = '123456'
 MYSQL_PORT     = 3306
