@@ -29,7 +29,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 20
+DOWNLOAD_DELAY = 35
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -68,23 +68,17 @@ COOKIES_ENABLED = False
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-#    'scrapy.pipelines.images.ImagesPipeline': 2,
-#    'smallspider.pipelines.AricleImagePipeline': 3,
+#    'scrapy.pipelines.images.ImagesPipeline': 3,
+   'smallspider.pipelines.ArticleImagePipeline': 2,
 #    'smallspider.pipelines.MysqlTwistedPipline': 4,
 }
 
 
 
-IMAGES_URLS_FIELD = "font_image_url"
+IMAGES_URLS_FIELD = "front_image_url"
 
 project_path = os.path.abspath(os.path.dirname(__file__))
 IMAGES_STORE = os.path.join(project_path, "images")
-
-MYSQL_HOST     = '127.0.0.1'
-MYSQL_DBNAME   = 'jobbole_spider'
-MYSQL_USER     = 'root'
-MYSQL_PASSWORD = '123456'
-MYSQL_PORT     = 3306
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
