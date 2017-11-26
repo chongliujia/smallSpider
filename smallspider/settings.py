@@ -70,7 +70,8 @@ COOKIES_ENABLED = False
 ITEM_PIPELINES = {
 #    'scrapy.pipelines.images.ImagesPipeline': 3,
    'smallspider.pipelines.ArticleImagePipeline': 2,
-#    'smallspider.pipelines.MysqlTwistedPipline': 4,
+   'smallspider.pipelines.JsonExporterPipeline': 4,
+   'smallspider.pipelines.ArticlespiderPipeline':3
 }
 
 
